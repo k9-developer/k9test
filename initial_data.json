@@ -1,0 +1,3 @@
+[{"pk": 1, "model": "mydata.mydata", 
+	"fields": {"bio": "was born in 1983.\r\nlive in Kherson.", "last_name": "Savchenko", 
+			"name": "Igor", "email": "k9@inet.ua"}}]

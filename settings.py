@@ -1,3 +1,4 @@
+# coding: utf-8
 # Django settings for k9test project.
 
 DEBUG = True
@@ -90,5 +91,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
+    'k9test.mydata',
 )
