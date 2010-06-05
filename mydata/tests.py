@@ -15,3 +15,7 @@ class SimpleTest(TestCase):
         response = client.get('/')
         self.failUnlessEqual(response.status_code, 200)
 
+    def test_settings(self):
+        client = Client()
+        response = client.get('/')
+        self.failIfEqual(response.context['settings'], None)
