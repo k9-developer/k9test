@@ -17,3 +17,16 @@ class MyData(models.Model):
     
     class Meta:
         pass
+    
+class HttpReq(models.Model):
+    path = models.CharField(
+            'Path',
+            max_length=200,
+            )
+    time = models.DateTimeField(
+            'Time',
+            auto_now_add=True,
+            )
+    
+    class Meta:
+        pass
