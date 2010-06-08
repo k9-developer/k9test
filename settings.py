@@ -104,3 +104,5 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'k9test.mydata',
 )
+
+LOGIN_REDIRECT_URL = '/'

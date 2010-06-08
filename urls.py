@@ -17,4 +17,12 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^$', 'k9test.mydata.views.index_view'),
     (r'^mydata/edit/$', 'k9test.mydata.views.mydata_edit'),
+    
+    (r'^accounts/login/$', 'django.contrib.auth.views.login',
+        #{'template_name': 'accounts/login.html',
+        #}
+        ),
+    (r'^accounts/logout/$', 'django.contrib.auth.views.logout',
+        {'next_page': '/',
+        }),
 )
