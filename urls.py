@@ -16,4 +16,5 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
     (r'^$', 'k9test.mydata.views.index_view'),
+    (r'^mydata/edit/$', 'k9test.mydata.views.mydata_edit'),
 )
