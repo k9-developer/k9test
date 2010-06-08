@@ -14,6 +14,7 @@ class SimpleTest(TestCase):
         client = Client()
         response = client.get('/')
         self.failUnlessEqual(response.status_code, 200)
+        self.failIfEqual(response.context['my_data'], None)
 
     def test_settings(self):
         client = Client()
@@ -22,5 +23,14 @@ class SimpleTest(TestCase):
         
     def test_mydata_form(self):
         client = Client()
+        client.login(username='admin', password='admin')
         response = client.get('/mydata/edit/')
         self.failUnlessEqual(response.status_code, 200)
+        self.failIfEqual(response.context['my_data_form'], None)
+        
+    
+#    def test_login(self):
+#        client = Client()
+#        client.login(username='admin', password='admin')
+#        response = client.get('/mydata/edit/')
+#        self.failUnlessEqual(response.status_code, 200)
