@@ -1,0 +1,11 @@
+# coding: utf-8
+
+from django.forms import ModelForm
+from k9test.mydata.models import MyData
+
+class MyDataForm(ModelForm):
+    class Meta:
+        model = MyData
+
+
+

@@ -5,7 +5,15 @@
   <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+	<div class="menu">
+		<ul>
+		<li> <a href="/"> main </a> </li>
+		<li> <a href="/mydata/edit/"> edit </a> </li>
+		</ul>
+	</div>
+	<div class="context">
 	{% block context %}
 	{% endblock %}
+	</div>
 </body>
 </html>

@@ -19,3 +19,8 @@ class SimpleTest(TestCase):
         client = Client()
         response = client.get('/')
         self.failIfEqual(response.context['settings'], None)
+        
+    def test_mydata_form(self):
+        client = Client()
+        response = client.get('/mydata/edit/')
+        self.failUnlessEqual(response.status_code, 200)
