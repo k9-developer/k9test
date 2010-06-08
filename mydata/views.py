@@ -34,6 +34,6 @@ def mydata_edit(request):
         'my_data_form': my_data_form,
     })
     return render_to_response(
-        'index.html',
+        'mydata_edit.html',
         variables
     )
