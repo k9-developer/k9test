@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 
 {% block context %}
-{% csrf_token %}
 
 <form method="post" action="/mydata/edit/">
-		{{ my_data_form.as_p }}
-		
+	{% csrf_token %}
+	{{ my_data_form.as_p }}
 <input type="submit" value="Save" />
 </form>
 
