@@ -7,8 +7,17 @@
 <body>
 	<div class="menu">
 		<ul>
-		<li> <a href="/"> main </a> </li>
-		<li> <a href="/mydata/edit/"> edit </a> </li>
+			<li> <a href="/"> main </a> </li>
+			<li></li>
+		{% if user.is_authenticated %}
+			<li> Welcome, {{ user.username }}. <a href="/accounts/logout/"> logout </a> </li>
+		{% else %}
+			<li> <a href="/accounts/login/"> login </a> </li>
+		{% endif %}
+			<li></li>
+			<li> <a href="/"> main </a> </li>
+			<li> <a href="/mydata/edit/"> edit </a> </li>
+		
 		</ul>
 	</div>
 	<div class="context">

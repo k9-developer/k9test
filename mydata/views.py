@@ -4,6 +4,7 @@
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from k9test.mydata.models import MyData
 from k9test.mydata.forms import MyDataForm
 
@@ -18,7 +19,7 @@ def index_view(request):
         variables
     )
  
-
+@login_required
 def mydata_edit(request):
     my_data = get_object_or_404(MyData, pk = 1)
     if request.method == 'POST':
