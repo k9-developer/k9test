@@ -8,4 +8,5 @@ class MyDataForm(forms.ModelForm):
     birthday = forms.DateField(widget=SelectDateWidget(years=xrange(1950, 2000)))
     class Meta:
         model = MyData
+        fields = ['email', 'bio', 'birthday', 'last_name', 'name', ]
 
