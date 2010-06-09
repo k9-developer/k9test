@@ -1,5 +1,6 @@
 [{"pk": 1, "model": "mydata.mydata", 
-	"fields": {"bio": "was born in 1983.\r\nlive in Kherson.", "last_name": "Savchenko", 
+	"fields": {"bio": "was born in 1983.\r\nlive in Kherson.", "birthday":"1983-06-16",
+			"last_name": "Savchenko", 
 			"name": "Igor", "email": "k9@inet.ua"}}, 
 {"pk": 1, "model": "auth.user", 
 	"fields": {"username": "admin", "first_name": "", 
