@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load get_edit_url %}
 
 {% block context %}
 
@@ -10,5 +11,11 @@
 	<li>bio: {{ my_data.bio }}</li>
 	<li>e-mail: {{ my_data.email }}</li>
 </ul>
+
+<br />
+
+<div class="some_url">
+	<a href="{% get_edit_url my_data %}"> edit my_data object</a> 
+	</div>
 
 {% endblock %}
