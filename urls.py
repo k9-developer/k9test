@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     (r'^$', 'k9test.mydata.views.index_view'),
     (r'^mydata/edit/$', 'k9test.mydata.views.mydata_edit'),
     (r'^ajax/mydata/edit/$', 'k9test.mydata.views.mydata_ajax_edit_form'),
+    (r'^httplist/$', 'k9test.mydata.views.httplist_view'),
     
     (r'^accounts/login/$', 'django.contrib.auth.views.login',
         #{'template_name': 'accounts/login.html',
