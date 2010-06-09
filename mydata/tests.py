@@ -41,7 +41,7 @@ class SimpleTest(TestCase):
         self.failUnlessEqual(response.status_code, 200)
         self.failIfEqual(response.context['http_list'], None)
         
-    def test_http(self):
+#    def test_http(self):
     
 #    def test_login(self):
 #        client = Client()
