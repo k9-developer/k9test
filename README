@@ -3,3 +3,5 @@ k9 test app
 Django 1.2.1
 python 2.5.4
 MySQL
+
+из сторонних библиотек только jQuery
