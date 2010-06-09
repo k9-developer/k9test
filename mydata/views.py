@@ -5,7 +5,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from k9test.mydata.models import MyData
+from k9test.mydata.models import MyData, HttpReq
 from k9test.mydata.forms import MyDataForm
 
 
@@ -16,6 +16,16 @@ def index_view(request):
     })
     return render_to_response(
         'index.html',
+        variables
+    )
+    
+def httplist_view(request):
+    httplist = HttpReq.objects.all()[:10]
+    variables = RequestContext(request, {
+        'httplist': httplist,
+    })
+    return render_to_response(
+        'list_http.html',
         variables
     )
  

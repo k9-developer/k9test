@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load get_edit_url %}
+
+{% block context %}
+
+<ol>
+{% for ht in httplist %}
+<li>{{ ht.time }} - {{ ht.path }} </li>
+{% endfor %}
+</ol>
+
+{% endblock %}

@@ -28,6 +28,18 @@ class SimpleTest(TestCase):
         self.failUnlessEqual(response.status_code, 200)
         self.failIfEqual(response.context['my_data_form'], None)
         
+    def test_mydata_ajax_form(self):
+        client = Client()
+        client.login(username='admin', password='admin')
+        response = client.get('/ajax/mydata/edit/')
+        self.failUnlessEqual(response.status_code, 200)
+        self.failIfEqual(response.context['my_data_form'], None)
+        
+    def list_view(self):
+        client = Client()
+        response = client.get('/httplist/')
+        self.failUnlessEqual(response.status_code, 200)
+        self.failIfEqual(response.context['http_list'], None)
     
 #    def test_login(self):
 #        client = Client()
