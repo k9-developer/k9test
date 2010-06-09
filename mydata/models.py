@@ -10,6 +10,7 @@ class MyData(models.Model):
             'Last Name',
             max_length=20,
             )
+    birthday = models.DateField()
     bio = models.TextField(
             'Bio',
             )
