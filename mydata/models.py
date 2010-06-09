@@ -2,6 +2,11 @@
 from django.db import models
 from datetime import datetime
 
+PRIORITY_CHOICES = (
+    ('0', '0'),
+    ('1', '1'),
+)
+
 class MyData(models.Model):
     name = models.CharField(
             'Name',
@@ -29,6 +34,12 @@ class HttpReq(models.Model):
             'Time',
             auto_now_add=True,
             )
+    priority = models.CharField(
+            'Priority',
+            max_length = 1,
+            blank = True,
+            default = '',
+            choices = PRIORITY_CHOICES)
     
     class Meta:
         pass
