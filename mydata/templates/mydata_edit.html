@@ -2,10 +2,18 @@
 
 {% block context %}
 
-<form method="post" action="/mydata/edit/">
+<form id="my_data_edit" method="post" action="/mydata/edit/">
 	{% csrf_token %}
 	{{ my_data_form.as_p }}
 <input type="submit" value="Save" />
 </form>
+
+<div class="clear">
+	--------------------------------------------------<br /> 
+This Form in AJAX. </div>
+<div id="my_data_ajax_edit">
+	
+</div>
+<div id="load_msg"> </div>
 
 {% endblock %}
