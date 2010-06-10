@@ -4,13 +4,15 @@
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+
 from k9test.mydata.models import MyData, HttpReq
 from k9test.mydata.forms import MyDataForm
 
 
 def index_view(request):
-    my_data = get_object_or_404(MyData, pk = 1)
+    my_data = get_object_or_404(MyData, pk=1)
     variables = RequestContext(request, {
         'my_data': my_data,
     })
@@ -31,14 +33,14 @@ def httplist_view(request):
  
 @login_required
 def mydata_edit(request):
-    my_data = get_object_or_404(MyData, pk = 1)
+    my_data = get_object_or_404(MyData, pk=1)
     if request.method == 'POST':
-        my_data_form = MyDataForm(data = request.POST, instance = my_data)
+        my_data_form = MyDataForm(data=request.POST, instance=my_data)
         if my_data_form.is_valid():
             my_data_form.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(reverse(index_view))
     else:
-        my_data_form = MyDataForm(instance = my_data)
+        my_data_form = MyDataForm(instance=my_data)
 
     variables = RequestContext(request, {
         #'my_data': my_data,
@@ -51,16 +53,16 @@ def mydata_edit(request):
     
 @login_required
 def mydata_ajax_edit_form(request):
-    my_data = get_object_or_404(MyData, pk = 1)
+    my_data = get_object_or_404(MyData, pk=1)
     readonly = False
     if request.method == 'POST':
-        my_data_form = MyDataForm(data = request.POST, instance = my_data)
+        my_data_form = MyDataForm(data=request.POST, instance=my_data)
         if my_data_form.is_valid():
             my_data_form.save()
             readonly = True
             #return HttpResponseRedirect('/')
     else:
-        my_data_form = MyDataForm(instance = my_data)
+        my_data_form = MyDataForm(instance=my_data)
 
     variables = RequestContext(request, {
         'readonly': readonly,
