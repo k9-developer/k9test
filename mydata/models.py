@@ -21,9 +21,7 @@ class MyData(models.Model):
             'Bio',
             )
     email = models.EmailField()
-    
-    class Meta:
-        pass
+
     
 class HttpReq(models.Model):
     path = models.CharField(
@@ -40,9 +38,7 @@ class HttpReq(models.Model):
             blank = True,
             default = '',
             choices = PRIORITY_CHOICES)
-    
-    class Meta:
-        pass
+
     
 class Logging(models.Model):    
     action_time = models.DateTimeField(
