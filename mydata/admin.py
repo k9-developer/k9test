@@ -2,9 +2,6 @@
  
 from django.contrib import admin
 from k9test.mydata.models import MyData, HttpReq, Logging
-
-
-
  
 class MyDataAdmin(admin.ModelAdmin):
     pass

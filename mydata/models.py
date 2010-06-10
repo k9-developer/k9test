@@ -1,11 +1,14 @@
 # coding: utf-8
 from django.db import models
 from datetime import datetime
+from django.db.models import signals
+
 
 PRIORITY_CHOICES = (
     ('0', '0'),
     ('1', '1'),
 )
+
 
 class MyData(models.Model):
     name = models.CharField(
@@ -17,12 +20,10 @@ class MyData(models.Model):
             max_length=20,
             )
     birthday = models.DateField()
-    bio = models.TextField(
-            'Bio',
-            )
+    bio = models.TextField('Bio',)
     email = models.EmailField()
 
-    
+
 class HttpReq(models.Model):
     path = models.CharField(
             'Path',
@@ -37,7 +38,8 @@ class HttpReq(models.Model):
             max_length = 1,
             blank = True,
             default = '',
-            choices = PRIORITY_CHOICES)
+            choices = PRIORITY_CHOICES,
+            )
 
     
 class Logging(models.Model):    
@@ -68,7 +70,6 @@ class Logging(models.Model):
     def __unicode__(self):
         return u"(%s) %s %s, %s" % (self.id, self.action, self.action_time, self.object_repr)
         
-from django.db.models.signals import post_save, post_delete
 
 def my_post_save(sender, instance, created, **kwargs):
     log = Logging()
@@ -80,7 +81,6 @@ def my_post_save(sender, instance, created, **kwargs):
         log.action = "edited" 
     log.save()
 
-    
 def my_post_delete(sender, instance, **kwargs):
     log = Logging()
     log.object_id = instance.id
@@ -88,8 +88,5 @@ def my_post_delete(sender, instance, **kwargs):
     log.action = 'deleted' 
     log.save()
     
-post_save.connect(my_post_save, sender=MyData)
-post_delete.connect(my_post_delete, sender=MyData)
-
-
-    
+signals.post_save.connect(my_post_save, sender=MyData)
+signals.post_delete.connect(my_post_delete, sender=MyData)
