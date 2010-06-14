@@ -31,7 +31,7 @@ class HttpReq(models.Model):
             )
     time = models.DateTimeField(
             'Time',
-            auto_now_add=True,
+            default = datetime.now(),
             )
     priority = models.CharField(
             'Priority',
