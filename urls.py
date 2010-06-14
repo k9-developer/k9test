@@ -21,13 +21,9 @@ urlpatterns = patterns('',
     (r'^ajax/mydata/edit/$', 'k9test.mydata.views.mydata_ajax_edit_form'),
     (r'^httplist/$', 'k9test.mydata.views.httplist_view'),
     
-    (r'^accounts/login/$', 'django.contrib.auth.views.login',
-        #{'template_name': 'accounts/login.html',
-        #}
-        ),
-    (r'^accounts/logout/$', 'django.contrib.auth.views.logout',
-        {'next_page': '/',
-        }),
+    (r'^accounts/login/$', 'django.contrib.auth.views.login',),
+    (r'^accounts/logout/$', 'django.contrib.auth.views.logout', 
+        {'next_page': '/',}),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
 )

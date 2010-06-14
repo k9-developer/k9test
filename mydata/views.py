@@ -20,7 +20,7 @@ def index_view(request):
         'index.html',
         variables
     )
-    
+
 def httplist_view(request):
     httplist = HttpReq.objects.all()[:10]
     variables = RequestContext(request, {
@@ -30,7 +30,7 @@ def httplist_view(request):
         'list_http.html',
         variables
     )
- 
+
 @login_required
 def mydata_edit(request):
     my_data = get_object_or_404(MyData, pk=1)
@@ -50,7 +50,7 @@ def mydata_edit(request):
         'mydata_edit.html',
         variables
     )
-    
+
 @login_required
 def mydata_ajax_edit_form(request):
     my_data = get_object_or_404(MyData, pk=1)
