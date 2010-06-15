@@ -1,19 +1,31 @@
 {% extends "base.html" %}
 
-{% block context %}
-
-<form id="my_data_edit" method="post" action="/mydata/edit/">
+{% block extramedia %}
+	{{ my_data_form.media }}
+{% endblock %}
+{# <!-- <form id="my_data_edit" method="post" action="/mydata/edit/">
 	{% csrf_token %}
 	{{ my_data_form.as_p }}
 	<input type="submit" value="Save" />
 </form>
 
 <div class="clear">
-	--------------------------------------------------<br /> 
+	--------------------------------------------------<br /> --> }#
+{% block context %}
+
 This Form in AJAX. </div>
 <div id="my_data_ajax_edit">
 	
 </div>
 <div id="load_msg"> </div>
 
+<script type="text/javascript">
+	$(function() {
+		$('#id_birthday').datepicker({
+			dateFormat: 'yy-mm-dd',
+			changeMonth: true,
+			changeYear: true,
+		});
+	});
+	</script>
 {% endblock %}
