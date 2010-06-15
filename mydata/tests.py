@@ -5,7 +5,7 @@ unittest). These will both pass when you run "manage.py test".
 
 Replace these with more appropriate tests for your application.
 """
-
+import os
 from django.test import TestCase
 from django.db import IntegrityError
 from django.test.client import Client
@@ -56,8 +56,14 @@ class SimpleTest(TestCase):
         self.failUnlessEqual(h.path, u"/accounts/login/")
         self.failUnlessEqual(h.time, dt_now)
         self.failUnlessEqual(h.priority, 1)
-        
     
+    def test_command(self):
+        fin, fout, ferr = os.popen3('manage.py printlist')
+        result = fout.read()
+        err = ferr.read()
+        self.failUnlessEqual(err, "")
+        self.failIfEqual(result, "")
+
 #    def test_login(self):
 #        client = Client()
 #        client.login(username='admin', password='admin')

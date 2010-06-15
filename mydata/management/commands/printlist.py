@@ -6,5 +6,5 @@ class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
         for obj in ContentType.objects.all():
-            print "Model: %s , count - %s." % \
-                (obj.model_class(), obj.model_class().objects.count())
+            print "Model: %s , count - %s objects." % \
+                (obj, obj.model_class().objects.count())
