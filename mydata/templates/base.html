@@ -3,8 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
 <head>
   <title>{% block title %}{% endblock %}</title>
-  <script type="text/javascript" src="/media/js/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="/media/js/jquery-1.4.2.js"></script>
   <script type="text/javascript" src="/media/js/main.js"></script>
+  {% block extramedia %}{% endblock %}
 </head>
 <body>
 	<div class="menu">
