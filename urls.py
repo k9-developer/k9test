@@ -20,7 +20,7 @@ urlpatterns = patterns('',
     (r'^mydata/edit/$', 'k9test.mydata.views.mydata_edit'),
     (r'^ajax/mydata/edit/$', 'k9test.mydata.views.mydata_ajax_edit_form'),
     (r'^httplist/$', 'k9test.mydata.views.httplist_view'),
-    
+
     (r'^accounts/login/$', 'django.contrib.auth.views.login',),
     (r'^accounts/logout/$', 'django.contrib.auth.views.logout', 
         {'next_page': '/',}),

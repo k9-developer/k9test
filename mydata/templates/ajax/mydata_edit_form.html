@@ -1,18 +1,15 @@
- {% if readonly %}
- {% endif %}
-
 <form id="my_data_ajax_edit_form">
-	{% csrf_token %}
-	{{ my_data_form.as_p }}
-	<input type="submit" value="Save" onclick="javascript:mydata_save(); return false;" />
+    {% csrf_token %}
+    {{ my_data_form.as_p }}
+    <input type="submit" value="Save" onclick="javascript:mydata_save(); return false;" />
 </form>
 
 <script type="text/javascript">
-	$(function() {
-		$('#id_birthday').datepicker({
-			dateFormat: 'yy-mm-dd',
-			changeMonth: true,
-			changeYear: true,
-		});
-	});
-	</script>
+    $(function() {
+        $('#id_birthday').datepicker({
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+        });
+    });
+</script>

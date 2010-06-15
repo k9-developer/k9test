@@ -26,11 +26,11 @@ class HttpReq(models.Model):
 
 
 class Logging(models.Model):    
-    action_time = models.DateTimeField('action time', 
+    action_time = models.DateTimeField('action time',
             auto_now_add=True, default=datetime.now,)
-    action = models.CharField('action', 
+    action = models.CharField('action',
             max_length=200, blank=True, null=True,)
-    object_id = models.CharField('object id', 
+    object_id = models.CharField('object id',
             max_length=200, blank=True, null=True,)
     object_repr = models.CharField('object repr',
             max_length=200, blank=True, null=True,)
@@ -47,9 +47,9 @@ def my_post_save(sender, instance, created, **kwargs):
     log.object_id = instance.id
     log.object_repr = instance
     if created:
-        log.action = "created" 
+        log.action = "created"
     else:
-        log.action = "edited" 
+        log.action = "edited"
     log.save()
 
 def my_post_delete(sender, instance, **kwargs):
