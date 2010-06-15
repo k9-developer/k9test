@@ -20,9 +20,9 @@ class MyData(models.Model):
 
 class HttpReq(models.Model):
     path = models.CharField('Path', max_length=200,)
-    time = models.DateTimeField('Time', default = datetime.now(),)
-    priority = models.CharField('Priority', max_length = 1, blank = True,
-            default = '', choices = PRIORITY_CHOICES,)
+    time = models.DateTimeField('Time', default=datetime.now(),)
+    priority = models.CharField('Priority', max_length=1, blank=True,
+            default='', choices=PRIORITY_CHOICES,)
 
 
 class Logging(models.Model):    
@@ -39,7 +39,8 @@ class Logging(models.Model):
         ordering = ('-action_time',)
   
     def __unicode__(self):
-        return u"(%s) %s %s, %s" % (self.id, self.action, self.action_time, self.object_repr)
+        return u"(%s) %s %s, %s" % \
+            (self.id, self.action, self.action_time, self.object_repr)
 
 
 def my_post_save(sender, instance, created, **kwargs):
