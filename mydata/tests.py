@@ -39,11 +39,15 @@ class SimpleTest(TestCase):
         self.failUnlessEqual(response.status_code, 200)
         self.failIfEqual(response.context['my_data_form'], None)
 
-    def list_view(self):
+    def test_list_view(self):
         client = Client()
         response = client.get('/httplist/')
         self.failUnlessEqual(response.status_code, 200)
-        self.failIfEqual(response.context['http_list'], None)
+        ht_list = response.context['httplist']
+        self.failIfEqual(ht_list, None)
+        self.failUnlessEqual( len(ht_list), 10)
+        for ht in ht_list:
+            self.failIf( ht.id > 10, "id lte 10")
 
     def test_http_save(self):
         dt_now = datetime.datetime(2010, 06, 10, 22, 45, 10)
@@ -64,8 +68,4 @@ class SimpleTest(TestCase):
         self.failUnlessEqual(err, "")
         self.failIfEqual(result, "")
 
-#    def test_login(self):
-#        client = Client()
-#        client.login(username='admin', password='admin')
-#        response = client.get('/mydata/edit/')
-#        self.failUnlessEqual(response.status_code, 200)
+

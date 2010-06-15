@@ -22,7 +22,7 @@ def index_view(request):
         )
 
 def httplist_view(request):
-    httplist = HttpReq.objects.all()[:10]
+    httplist = HttpReq.objects.order_by("id").all()[:10]
     variables = RequestContext(request, {
         'httplist': httplist,
         })
