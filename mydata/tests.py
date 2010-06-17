@@ -1,5 +1,5 @@
 # coding: utf-8
-import os
+import subprocess
 from django.test import TestCase
 from django.db import IntegrityError
 from k9test.mydata.models import HttpReq, MyData, Logging
@@ -11,14 +11,21 @@ class CommandTest(TestCase):
     """ Test command: printlist"""
 
     def testCommandPrintlist(self):
+        PIPE = subprocess.PIPE
+        ferr = ""
+        fout = ""
         cmd = 'manage.py printlist'
         if sys.platform != "win32":
             cmd = 'python manage.py printlist'
-        fin, fout, ferr = os.popen3(cmd)
-        result = fout.read()
-        err = ferr.read()
-        self.failUnlessEqual(err, "", "Command not runing!")
-        self.failIfEqual(result, "")
+        p = subprocess.Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE,
+                stderr=subprocess.STDOUT)
+        p.wait()
+        if p.returncode <0:
+            ferr = p.stderr.read()
+        else:
+            fout = p.stdout.read()
+        self.failUnlessEqual(ferr, "", "Command not runing!")
+        self.failIfEqual(fout, "")
 
 
 class ViewsTest(TestCase):
