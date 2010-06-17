@@ -1,5 +1,15 @@
 $(document).ready(function(){
-	 $('#my_data_ajax_edit').load('/ajax/mydata/edit/');
+	$.get('/ajax/mydata/edit/', function(data) {
+			$('#my_data_ajax_edit').html(data);
+			$(function() {
+			    $('input#id_birthday').datepicker({
+			        dateFormat: 'yy-mm-dd',
+			        changeMonth: true,
+			        changeYear: true,
+			        yearRange: '1900:2020',
+			    });
+			});
+		});
 });
  
 function mydata_save(path){
