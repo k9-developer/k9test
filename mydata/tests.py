@@ -20,7 +20,7 @@ class CommandTest(TestCase):
     def testCommandPrintlist(self):
         cmd = 'manage.py printlist'
         if sys.platform != "win32":
-            cmd = 'python manage.py printlist' 
+            cmd = 'python manage.py printlist'
         fin, fout, ferr = os.popen3(cmd)
         result = fout.read()
         err = ferr.read()
