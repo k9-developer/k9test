@@ -64,7 +64,7 @@ class SimpleTest(TestCase):
 
     def test_command(self):
         cmd = 'manage.py printlist'
-        if sys.platform == "win32":
+        if sys.platform != "win32":
             cmd = 'python manage.py printlist' 
         fin, fout, ferr = os.popen3(cmd)
         result = fout.read()
