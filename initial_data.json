@@ -1,10 +1,14 @@
-[{"pk": 1, "model": "mydata.mydata", 
+[
+{"pk": 1, "model": "mydata.mydata", 
 	"fields": {"bio": "was born in 1983.\r\nlive in Kherson.", "birthday":"1983-06-16",
 			"last_name": "Savchenko", 
-			"name": "Igor", "email": "k9@inet.ua"}}, 
+			"name": "Igor", "email": "k9@inet.ua"}
+}, 
 {"pk": 1, "model": "auth.user", 
 	"fields": {"username": "admin", "first_name": "", 
 		"last_name": "", "is_active": true, "is_superuser": true, 
 		"is_staff": true, "last_login": "2010-06-09 01:18:48", "groups": [], 
 		"user_permissions": [], "password": "sha1$8cc3c$230467f5653d7b2f1f63983bceb6761b028d3655", 
-		"email": "k9@inet.ua", "date_joined": "2010-06-05 01:50:40"}}]
+		"email": "k9@inet.ua", "date_joined": "2010-06-05 01:50:40"}
+}
+]

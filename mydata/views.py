@@ -15,21 +15,21 @@ def index_view(request):
     my_data = get_object_or_404(MyData, pk=1)
     variables = RequestContext(request, {
         'my_data': my_data,
-    })
+        })
     return render_to_response(
         'index.html',
         variables
-    )
+        )
 
 def httplist_view(request):
-    httplist = HttpReq.objects.all()[:10]
+    httplist = HttpReq.objects.order_by("id").all()[:10]
     variables = RequestContext(request, {
         'httplist': httplist,
-    })
+        })
     return render_to_response(
         'list_http.html',
         variables
-    )
+        )
 
 @login_required
 def mydata_edit(request):
@@ -45,30 +45,27 @@ def mydata_edit(request):
     variables = RequestContext(request, {
         #'my_data': my_data,
         'my_data_form': my_data_form,
-    })
+        })
     return render_to_response(
         'mydata_edit.html',
         variables
-    )
+        )
 
 @login_required
 def mydata_ajax_edit_form(request):
     my_data = get_object_or_404(MyData, pk=1)
-    readonly = False
     if request.method == 'POST':
         my_data_form = MyDataForm(data=request.POST, instance=my_data)
         if my_data_form.is_valid():
             my_data_form.save()
-            readonly = True
             #return HttpResponseRedirect('/')
     else:
         my_data_form = MyDataForm(instance=my_data)
 
     variables = RequestContext(request, {
-        'readonly': readonly,
         'my_data_form': my_data_form,
-    })
+        })
     return render_to_response(
         'ajax/mydata_edit_form.html',
         variables
-    )
+        )

@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% load get_edit_url %}
+{% block title %}List HttpReq{% endblock %}
 
 {% block context %}
 
 <ol>
 {% for ht in httplist %}
-<li>{{ ht.time }} - {{ ht.path }} </li>
+    <li>({{ ht.id }}) - {{ ht.time }} - {{ ht.path }} </li>
 {% endfor %}
 </ol>
 

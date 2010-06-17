@@ -6,4 +6,3 @@ class HttpReqSave:
         req = HttpReq()
         req.path = request.path
         req.save()
-
