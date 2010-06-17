@@ -10,4 +10,7 @@
 {% endfor %}
 </ol>
 
+Статистика:
+Всего запросов: {{ all_count }}, из них {{ p_zero|floatformat:2 }}% c приоритетом 0 и {{ p_one|floatformat:2 }}% c приоритетом 1.
+
 {% endblock %}

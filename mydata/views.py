@@ -23,8 +23,16 @@ def index_view(request):
 
 def httplist_view(request):
     httplist = HttpReq.objects.order_by("id").all()[:10]
+    zero_count = float(HttpReq.objects.filter(priority__exact=0).count())
+    one_count = float(HttpReq.objects.filter(priority__exact=1).count())
+    all_count = float(HttpReq.objects.count())
+    p_zero = zero_count/all_count*100.00
+    p_one = one_count/all_count*100.00
     variables = RequestContext(request, {
         'httplist': httplist,
+        'p_zero': p_zero,
+        'p_one': p_one,
+        'all_count' : all_count,
         })
     return render_to_response(
         'list_http.html',
