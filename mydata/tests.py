@@ -11,6 +11,7 @@ from django.db import IntegrityError
 from django.test.client import Client
 from k9test.mydata.models import HttpReq
 import datetime
+import sys
 
 
 class SimpleTest(TestCase):
@@ -45,9 +46,9 @@ class SimpleTest(TestCase):
         self.failUnlessEqual(response.status_code, 200)
         ht_list = response.context['httplist']
         self.failIfEqual(ht_list, None)
-        self.failUnlessEqual( len(ht_list), 10)
+        self.failUnlessEqual(len(ht_list), 10)
         for ht in ht_list:
-            self.failIf( ht.id > 10, "id lte 10")
+            self.failIf(ht.id>10, "id lt 10")
 
     def test_http_save(self):
         dt_now = datetime.datetime(2010, 06, 10, 22, 45, 10)
@@ -62,10 +63,13 @@ class SimpleTest(TestCase):
         self.failUnlessEqual(h.priority, 1)
 
     def test_command(self):
-        fin, fout, ferr = os.popen3('manage.py printlist')
+        cmd = 'manage.py printlist'
+        if sys.platform == "win32":
+            cmd = 'python manage.py printlist' 
+        fin, fout, ferr = os.popen3(cmd)
         result = fout.read()
         err = ferr.read()
-        self.failUnlessEqual(err, "")
+        self.failUnlessEqual(err, "", "Command not runing!")
         self.failIfEqual(result, "")
 
 
