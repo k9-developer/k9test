@@ -56,8 +56,8 @@ class ViewsTest(TestCase):
             self.failIf(ht.id>10, "id lt 10")
 
     def testHttpListView(self):
-        self._httpListPage(9, 9)
-        self._httpListPage(10, 10)
+        for i in xrange(1, 11):
+            self._httpListPage(i, i)
         self._httpListPage(10, 11)
 
 class ModelsTest(TestCase):
@@ -115,14 +115,6 @@ class SignalsTest(TestCase):
         """Do Test Signals on HttpReq """
 
         time = datetime.datetime.now()
-        md = HttpReq.objects.all()[:1].get()
-        md_id = md.id
-        md.delete()
-        log = Logging.objects.filter(object_repr='httpreq', \
-            object_id=md_id, action = 'deleted', action_time__gte=time).count()
-        self.failUnlessEqual(log, 1)
-
-        time = datetime.datetime.now()
         md = HttpReq(path="/", time="2010-06-16 14:00:05")
         md.save()
         md_id = md.id
@@ -135,4 +127,12 @@ class SignalsTest(TestCase):
         md.save()
         log = Logging.objects.filter(object_repr='httpreq', \
             object_id=md_id, action = 'edited', action_time__gte=time).count()
+        self.failUnlessEqual(log, 1)
+        
+        time = datetime.datetime.now()
+        md = HttpReq.objects.all()[:1].get()
+        md_id = md.id
+        md.delete()
+        log = Logging.objects.filter(object_repr='httpreq', \
+            object_id=md_id, action = 'deleted', action_time__gte=time).count()
         self.failUnlessEqual(log, 1)
