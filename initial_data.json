@@ -1,4 +1,5 @@
-[{"pk": 1, "model": "mydata.mydata", 
+[
+{"pk": 1, "model": "mydata.mydata", 
 	"fields": {"bio": "was born in 1983.\r\nlive in Kherson.", "birthday":"1983-06-16",
 			"last_name": "Savchenko", 
 			"name": "Igor", "email": "k9@inet.ua"}
@@ -25,19 +26,5 @@
 {"pk": 7, "model": "mydata.httpreq", 
     "fields": {"priority": "", "path": "/mydata/edit/", "time": "2010-06-15 13:17:33"}}, 
 {"pk": 8, "model": "mydata.httpreq", 
-    "fields": {"priority": "", "path": "/media/css/jquery.ui.core.css", "time": "2010-06-15 13:17:33"}}, 
-{"pk": 9, "model": "mydata.httpreq", 
-    "fields": {"priority": "", "path": "/media/css/jquery.ui.resizable.css", "time": "2010-06-15 13:17:33"}}, 
-{"pk": 10, "model": "mydata.httpreq", 
-    "fields": {"priority": "", "path": "/media/css/jquery.ui.selectable.css", "time": "2010-06-15 13:17:33"}}, 
-{"pk": 11, "model": "mydata.httpreq", 
-    "fields": {"priority": "", "path": "/media/css/jquery.ui.accordion.css", "time": "2010-06-15 13:17:33"}}, 
-{"pk": 12, "model": "mydata.httpreq", 
-    "fields": {"priority": "", "path": "/media/css/jquery.ui.autocomplete.css", "time": "2010-06-15 13:17:33"}}, 
-{"pk": 13, "model": "mydata.httpreq", 
-    "fields": {"priority": "", "path": "/media/css/jquery.ui.button.css", "time": "2010-06-15 13:17:33"}}, 
-{"pk": 14, "model": "mydata.httpreq", 
-    "fields": {"priority": "", "path": "/media/css/jquery.ui.slider.css", "time": "2010-06-15 13:17:33"}}, 
-{"pk": 15, "model": "mydata.httpreq", 
-    "fields": {"priority": "", "path": "/media/css/jquery.ui.tabs.css", "time": "2010-06-15 13:17:33"}}
+    "fields": {"priority": "", "path": "/media/css/jquery.ui.core.css", "time": "2010-06-15 13:17:33"}}
 ]

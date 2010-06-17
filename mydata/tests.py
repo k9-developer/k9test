@@ -61,11 +61,30 @@ class ViewsTest(TestCase):
         response = client.get('/httplist/')
         self.failUnlessEqual(response.status_code, 200)
         ht_list = response.context['httplist']
+        ht_count = HttpReq.objects.count()
         self.failIfEqual(ht_list, None)
-        self.failUnlessEqual(len(ht_list), 10)
+        self.failUnlessEqual(len(ht_list), 9)
+        self.failUnlessEqual(ht_count, 9)
         for ht in ht_list:
             self.failIf(ht.id>10, "id lt 10")
-
+        response = client.get('/httplist/')
+        self.failUnlessEqual(response.status_code, 200)
+        ht_list = response.context['httplist']
+        ht_count = HttpReq.objects.count()
+        self.failIfEqual(ht_list, None)
+        self.failUnlessEqual(len(ht_list), 10)
+        self.failUnlessEqual(ht_count, 10)
+        for ht in ht_list:
+            self.failIf(ht.id>10, "id lt 10")
+        response = client.get('/httplist/')
+        self.failUnlessEqual(response.status_code, 200)
+        ht_list = response.context['httplist']
+        ht_count = HttpReq.objects.count()
+        self.failIfEqual(ht_list, None)
+        self.failUnlessEqual(len(ht_list), 10)
+        self.failUnlessEqual(ht_count, 11)
+        for ht in ht_list:
+            self.failIf(ht.id>10, "id lt 10")
 
 class ModelsTest(TestCase):
     """ Test models"""
