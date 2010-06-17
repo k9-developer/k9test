@@ -7,7 +7,7 @@ from k9test.mydata.models import MyData
 class CalendarWidget(forms.TextInput):
     class Media:
         css = {
-            'all': ('/media/css/demos.css', '/media/css/jquery.ui.all.css', )
+            'all': ('/media/css/jquery.ui.all.css', )
         }
         js = ('/media/js/ui/jquery.ui.core.js', '/media/js/ui/jquery.ui.widget.js', 
               '/media/js/ui/jquery.ui.datepicker.js')
