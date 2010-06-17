@@ -1,30 +1,43 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
-<head>
-  <title>{% block title %}{% endblock %}</title>
-  <script type="text/javascript" src="/media/js/jquery-1.4.2.js"></script>
-  <script type="text/javascript" src="/media/js/main.js"></script>
-  {% block extramedia %}{% endblock %}
-</head>
-<body>
-    <div class="menu">
-        <ul>
-            <li> <a href="/"> main </a> </li>
-            <li></li>
-        {% if user.is_authenticated %}
-            <li> Welcome, {{ user.username }}. <a href="/accounts/logout/"> logout </a> </li>
-        {% else %}
-            <li> <a href="/accounts/login/"> login </a> </li>
-        {% endif %}
-            <li></li>
-            <li> <a href="/mydata/edit/"> edit my data </a> </li>
-            <li> <a href="/httplist/"> http list </a> </li>
-        </ul>
-    </div>
-    <div class="context">
-    {% block context %}
-    {% endblock %}
-    </div>
-</body>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <script type="text/javascript" src="/media/js/jquery-1.4.2.js">
+        </script>
+        <script type="text/javascript" src="/media/js/main.js">
+        </script>
+        {% block extramedia %}{% endblock %}
+    </head>
+    <body>
+        <div class="menu">
+            <ul>
+                <li>
+                    <a href="/">main</a>
+                </li>
+                <li>
+                </li>
+   {% if user.is_authenticated %}
+                <li>
+                    Welcome, {{ user.username }}.<a href="/accounts/logout/">logout</a>
+                </li>
+    {% else %}
+                <li>
+                    <a href="/accounts/login/">login</a>
+                </li>
+    {% endif %}
+                <li>
+                </li>
+                <li>
+                    <a href="/mydata/edit/">edit my data</a>
+                </li>
+                <li>
+                    <a href="/httplist/">http list</a>
+                </li>
+            </ul>
+        </div>
+        <div class="context">
+            {% block context %}
+            {% endblock %}
+        </div>
+    </body>
 </html>
