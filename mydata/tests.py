@@ -1,14 +1,7 @@
 # coding: utf-8
-"""
-This file demonstrates two different styles of tests (one doctest and one
-unittest). These will both pass when you run "manage.py test".
-
-Replace these with more appropriate tests for your application.
-"""
 import os
 from django.test import TestCase
 from django.db import IntegrityError
-from django.test.client import Client
 from k9test.mydata.models import HttpReq, MyData, Logging
 import datetime
 import sys
@@ -29,65 +22,45 @@ class CommandTest(TestCase):
 
 
 class ViewsTest(TestCase):
-    """ Test views"""
 
     def testIndexPage(self):
-        client = Client()
-        response = client.get('/')
+        response = self.client.get('/')
         self.failUnlessEqual(response.status_code, 200)
         self.failIfEqual(response.context['my_data'], None)
 
     def testSettingsView(self):
-        client = Client()
-        response = client.get('/')
+        response = self.client.get('/')
         self.failIfEqual(response.context['settings'], None)
 
     def testMydataForm(self):
-        client = Client()
-        client.login(username='admin', password='admin')
-        response = client.get('/mydata/edit/')
+        self.client.login(username='admin', password='admin')
+        response = self.client.get('/mydata/edit/')
         self.failUnlessEqual(response.status_code, 200)
         self.failIfEqual(response.context['my_data_form'], None)
 
     def testMydataAjaxForm(self):
-        client = Client()
-        client.login(username='admin', password='admin')
-        response = client.get('/ajax/mydata/edit/')
+        self.client.login(username='admin', password='admin')
+        response = self.client.get('/ajax/mydata/edit/')
         self.failUnlessEqual(response.status_code, 200)
         self.failIfEqual(response.context['my_data_form'], None)
 
-    def testHttpListView(self):
-        client = Client()
-        response = client.get('/httplist/')
+    def _httpListPage(self, count_on_page, count_by_model):
+        response = self.client.get('/httplist/')
         self.failUnlessEqual(response.status_code, 200)
         ht_list = response.context['httplist']
         ht_count = HttpReq.objects.count()
         self.failIfEqual(ht_list, None)
-        self.failUnlessEqual(len(ht_list), 9)
-        self.failUnlessEqual(ht_count, 9)
-        for ht in ht_list:
-            self.failIf(ht.id>10, "id lt 10")
-        response = client.get('/httplist/')
-        self.failUnlessEqual(response.status_code, 200)
-        ht_list = response.context['httplist']
-        ht_count = HttpReq.objects.count()
-        self.failIfEqual(ht_list, None)
-        self.failUnlessEqual(len(ht_list), 10)
-        self.failUnlessEqual(ht_count, 10)
-        for ht in ht_list:
-            self.failIf(ht.id>10, "id lt 10")
-        response = client.get('/httplist/')
-        self.failUnlessEqual(response.status_code, 200)
-        ht_list = response.context['httplist']
-        ht_count = HttpReq.objects.count()
-        self.failIfEqual(ht_list, None)
-        self.failUnlessEqual(len(ht_list), 10)
-        self.failUnlessEqual(ht_count, 11)
+        self.failUnlessEqual(len(ht_list), count_on_page)
+        self.failUnlessEqual(ht_count, count_by_model)
         for ht in ht_list:
             self.failIf(ht.id>10, "id lt 10")
 
+    def testHttpListView(self):
+        self._httpListPage(9, 9)
+        self._httpListPage(10, 10)
+        self._httpListPage(10, 11)
+
 class ModelsTest(TestCase):
-    """ Test models"""
 
     def testHttpObjectSave(self):
         dt_now = datetime.datetime(2010, 06, 10, 22, 45, 10)
@@ -103,8 +76,7 @@ class ModelsTest(TestCase):
 
     def testHttpObjectNew(self):
         ht_count = HttpReq.objects.count()
-        client = Client()
-        response = client.get('/')
+        response = self.client.get('/')
         self.failUnlessEqual(response.status_code, 200)
         ht_count2 = HttpReq.objects.count()
         self.failUnlessEqual(ht_count + 1, ht_count2)
@@ -122,6 +94,7 @@ class SignalsTest(TestCase):
         log = Logging.objects.filter(object_repr='mydata', \
             object_id=md_id, action = 'deleted', action_time__gte=time).count()
         self.failUnlessEqual(log, 1)
+
         time = datetime.datetime.now()
         md = MyData(name="Igor", last_name="Savchenko", \
             birthday="1983-06-16", bio="was born", email="k9@inet.ua")
@@ -130,6 +103,7 @@ class SignalsTest(TestCase):
         log = Logging.objects.filter(object_repr='mydata', \
             object_id=md_id, action = 'created', action_time__gte=time).count()
         self.failUnlessEqual(log, 1)
+
         time = datetime.datetime.now()
         md.bio="in Kherson"
         md.save()
@@ -147,6 +121,7 @@ class SignalsTest(TestCase):
         log = Logging.objects.filter(object_repr='httpreq', \
             object_id=md_id, action = 'deleted', action_time__gte=time).count()
         self.failUnlessEqual(log, 1)
+
         time = datetime.datetime.now()
         md = HttpReq(path="/", time="2010-06-16 14:00:05")
         md.save()
@@ -154,6 +129,7 @@ class SignalsTest(TestCase):
         log = Logging.objects.filter(object_repr='httpreq', \
             object_id=md_id, action = 'created', action_time__gte=time).count()
         self.failUnlessEqual(log, 1)
+
         time = datetime.datetime.now()
         md.priority=1
         md.save()
