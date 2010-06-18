@@ -12,7 +12,8 @@
 {% endfor %}
 </ol>
 
-Статистика:
-Всего запросов: {{ all_count }}, из них {{ p_zero|floatformat:2 }}% c приоритетом 0 и {{ p_one|floatformat:2 }}% c приоритетом 1.
-
+Statistics: <br />
+All request: {{ all_count }}. <br />
+priority 0: {{ c_zero }} requests, is {{ p_zero|floatformat:2 }}%. <br />
+priority 1: {{ c_one }} requests, is {{ p_one|floatformat:2 }}%. <br />
 {% endblock %}

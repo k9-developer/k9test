@@ -32,7 +32,9 @@ def httplist_view(request):
         'httplist': httplist,
         'p_zero': p_zero,
         'p_one': p_one,
-        'all_count' : all_count,
+        'c_zero': int(zero_count),
+        'c_one': int(one_count),
+        'all_count' : int(all_count),
         })
     return render_to_response(
         'list_http.html',
