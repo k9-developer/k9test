@@ -91,55 +91,44 @@ class ModelsTest(TestCase):
 class SignalsTest(TestCase):
     """ Test signsls"""
 
-    def testSignalsMyData(self):
-        """Do Test Signals on MyData """
+    def _loggingObjIsPresent(self, obj_name, obj_id, act, time):
+        log = Logging.objects.filter(object_repr=obj_name, \
+            object_id=obj_id, action = act, action_time__gte=time).count()
+        self.failUnlessEqual(log, 1)
 
+    def testSignalsMyDataDelete(self):
         time = datetime.datetime.now()
         md = MyData.objects.get(pk=1)
         md_id = md.id
         md.delete()
-        log = Logging.objects.filter(object_repr='mydata', \
-            object_id=md_id, action = 'deleted', action_time__gte=time).count()
-        self.failUnlessEqual(log, 1)
+        self._loggingObjIsPresent('mydata', md_id, 'deleted', time)
 
+    def testSignalsMyDataSaveEdit(self):
         time = datetime.datetime.now()
         md = MyData(name="Igor", last_name="Savchenko", \
             birthday="1983-06-16", bio="was born", email="k9@inet.ua")
         md.save()
-        md_id = md.id
-        log = Logging.objects.filter(object_repr='mydata', \
-            object_id=md_id, action = 'created', action_time__gte=time).count()
-        self.failUnlessEqual(log, 1)
+        self._loggingObjIsPresent('mydata', md.id, 'created', time)
 
         time = datetime.datetime.now()
         md.bio="in Kherson"
         md.save()
-        log = Logging.objects.filter(object_repr='mydata', \
-            object_id=md_id, action = 'edited', action_time__gte=time).count()
-        self.failUnlessEqual(log, 1)
+        self._loggingObjIsPresent('mydata', md.id, 'edited', time)
 
-    def testSignalsHttpReq(self):
-        """Do Test Signals on HttpReq """
-
+    def testSignalsHttpReqSaveEdit(self):
         time = datetime.datetime.now()
         md = HttpReq(path="/", time="2010-06-16 14:00:05")
         md.save()
-        md_id = md.id
-        log = Logging.objects.filter(object_repr='httpreq', \
-            object_id=md_id, action = 'created', action_time__gte=time).count()
-        self.failUnlessEqual(log, 1)
+        self._loggingObjIsPresent('httpreq', md.id, 'created', time)
 
         time = datetime.datetime.now()
         md.priority=1
         md.save()
-        log = Logging.objects.filter(object_repr='httpreq', \
-            object_id=md_id, action = 'edited', action_time__gte=time).count()
-        self.failUnlessEqual(log, 1)
+        self._loggingObjIsPresent('httpreq', md.id, 'edited', time)
         
+    def testSignalsHttpReqDelete(self):
         time = datetime.datetime.now()
         md = HttpReq.objects.all()[:1].get()
         md_id = md.id
         md.delete()
-        log = Logging.objects.filter(object_repr='httpreq', \
-            object_id=md_id, action = 'deleted', action_time__gte=time).count()
-        self.failUnlessEqual(log, 1)
+        self._loggingObjIsPresent('httpreq', md_id, 'deleted', time)
