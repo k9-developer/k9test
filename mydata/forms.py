@@ -15,6 +15,7 @@ class CalendarWidget(forms.TextInput):
 
 class MyDataForm(forms.ModelForm):
     birthday = forms.DateField(widget=CalendarWidget)
+    bio = forms.CharField(widget=forms.Textarea(attrs={'cols': '17', 'rows': '5'} ,))
 
     class Meta:
         model = MyData

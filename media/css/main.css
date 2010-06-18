@@ -14,7 +14,21 @@ ul.errorlist {
     margin: 0 0 3px;
     padding: 0px 5px;
 }
+label
+{
+  display: block;
+  float: left;
+  clear: left;
+  text-align: right;
+  width: 100px;
+}
 
 .marked {background-color: #ffdddd;}
 .red {color: red;}
 .green {color: green;}
+form{
+	display: block;
+	border: blue 1px solid;
+	padding: 5px; 
+	width: 300px;
+}
