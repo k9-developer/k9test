@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load get_edit_url %}
+
 {% block title %} MyData{% endblock %}
+
 {% block context %}
 <ul>
     <li>name: {{ my_data.name }}</li>
@@ -17,5 +19,5 @@
     {% if user.is_authenticated %}
     <a href="{% get_edit_url user %}"> edit user object</a>
     {% endif %} 
-    </div>
+</div>
 {% endblock %}

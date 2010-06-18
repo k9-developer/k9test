@@ -1,13 +1,14 @@
 {% extends "base.html" %}
+
 {% block title %}MyData Edit{% endblock %}
+{% block mydatamenu %}{% endblock %}
 
 {% block extramedia %}
     {{ my_data_form.media }}
 {% endblock %}
 
 {% block context %}
-
-This Form in AJAX. </div>
-<div id="my_data_ajax_edit"> </div>
-<div id="load_msg"> </div>
+    This Form in AJAX. </div>
+    <div id="my_data_ajax_edit"> </div>
+    <div id="load_msg"> </div>
 {% endblock %}

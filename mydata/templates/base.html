@@ -17,7 +17,7 @@
                 </li>
                 <li>
                 </li>
-	{% block loginmenu %}
+{% block loginmenu %}
    {% if user.is_authenticated %}
                 <li>
                     Welcome, {{ user.username }}.<a href="/accounts/logout/">logout</a>
@@ -27,15 +27,17 @@
                     <a href="/accounts/login/">login</a>
                 </li>
     {% endif %}
-	{% endblock %}
-                <li>
-                </li>
+{% endblock %}
+{% block mydatamenu %}
                 <li>
                     <a href="/mydata/edit/">edit my data</a>
                 </li>
+{% endblock %}
+{% block httplistmenu %}
                 <li>
                     <a href="/httplist/">http list</a>
                 </li>
+{% endblock %}
             </ul>
         </div>
         <div class="context">
