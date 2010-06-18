@@ -1,4 +1,8 @@
 <form id="my_data_ajax_edit_form">
     {% csrf_token %}
-    {{ my_data_form.as_p }}<input type="submit" value="Save" onclick="javascript:mydata_save('{% url k9test.mydata.views.mydata_ajax_edit_form %}'); return false;"/>
+    <table>
+    {{ my_data_form.as_table }}
+    </table>
+    <input type="submit" value="Save" 
+       onclick="javascript:mydata_save('{% url k9test.mydata.views.mydata_ajax_edit_form %}'); return false;"/>
 </form>
