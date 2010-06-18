@@ -115,7 +115,7 @@ class SignalsTest(TestCase):
         md.save()
         self._loggingObjIsPresent('mydata', md.id, 'edited', time)
 
-    def testSignalsHttpReqSaveEdit(self):
+    def testSignalsHttpReq(self):
         time = datetime.datetime.now()
         md = HttpReq(path="/", time="2010-06-16 14:00:05")
         md.save()
@@ -125,10 +125,8 @@ class SignalsTest(TestCase):
         md.priority=1
         md.save()
         self._loggingObjIsPresent('httpreq', md.id, 'edited', time)
-        
-    def testSignalsHttpReqDelete(self):
+
         time = datetime.datetime.now()
-        md = HttpReq.objects.all()[:1].get()
         md_id = md.id
         md.delete()
         self._loggingObjIsPresent('httpreq', md_id, 'deleted', time)
