@@ -28,16 +28,19 @@
                 </li>
     {% endif %}
 {% endblock %}
-{% block mydatamenu %}
                 <li>
+                </li>
+                <li>
+            {% block mydatamenu %}
                     <a href="/mydata/edit/">edit my data</a>
+            {% endblock %}
                 </li>
-{% endblock %}
-{% block httplistmenu %}
                 <li>
+            {% block httplistmenu %}
                     <a href="/httplist/">http list</a>
+            {% endblock %}
                 </li>
-{% endblock %}
+
             </ul>
         </div>
         <div class="context">

@@ -1,3 +1,7 @@
+div.menu{
+	background-color: #d6d6d6; margin: 15px; 
+    width: 200px; margin: 20px; padding: 20px 10px;
+}
 ul.errorlist {
     margin: 0;
     padding: 0;
@@ -13,3 +17,4 @@ ul.errorlist {
 
 .marked {background-color: #ffdddd;}
 .red {color: red;}
+.green {color: green;}
