@@ -4,7 +4,7 @@ from datetime import datetime
 from django.db.models import signals
 
 
-PRIORITY_CHOICES = (
+PRIORITY_CHOICES =(
     ('0', '0'),
     ('1', '1'),
 )
@@ -23,13 +23,13 @@ class HttpReq(models.Model):
     time = models.DateTimeField('Time', default=datetime.now(),)
     priority = models.CharField('Priority', max_length=1, blank=True,
             default='', choices=PRIORITY_CHOICES,)
-    
+
     def __unicode__(self):
-        return u"(%s) %s %s [%s]" % \
+        return u"(%s) %s %s [%s]" %\
             (self.id, self.time, self.path, self.priority)
 
 
-class Logging(models.Model):    
+class Logging(models.Model):
     action_time = models.DateTimeField('action time',
             auto_now_add=True, default=datetime.now,)
     action = models.CharField('action',
@@ -41,9 +41,9 @@ class Logging(models.Model):
 
     class Meta:
         ordering = ('-action_time',)
-  
+
     def __unicode__(self):
-        return u"(%s) %s %s, %s id: %s" % \
+        return u"(%s) %s %s, %s id: %s" %\
             (self.id, self.action, self.action_time, self.object_repr, self.object_id)
 
 

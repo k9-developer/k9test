@@ -1,7 +1,6 @@
 # coding: utf-8
 import subprocess
 from django.test import TestCase
-from django.db import IntegrityError
 from k9test.mydata.models import HttpReq, MyData, Logging
 import datetime
 import sys
@@ -70,14 +69,14 @@ class ViewsTest(TestCase):
 class ModelsTest(TestCase):
 
     def testHttpObjectSave(self):
+        path = u"/accounts/login/"
         dt_now = datetime.datetime(2010, 06, 10, 22, 45, 10)
         h = HttpReq()
-        h.path = u"/accounts/login/"
+        h.path = path
         h.time = dt_now
         h.priority = 1
         h.save()
-        #self.assertRaises(IntegrityError, h.save())
-        self.failUnlessEqual(h.path, u"/accounts/login/")
+        self.failUnlessEqual(h.path, path)
         self.failUnlessEqual(h.time, dt_now)
         self.failUnlessEqual(h.priority, 1)
 
@@ -89,7 +88,6 @@ class ModelsTest(TestCase):
         self.failUnlessEqual(ht_count + 1, ht_count2)
 
 class SignalsTest(TestCase):
-    """ Test signsls"""
 
     def _loggingObjIsPresent(self, obj_name, obj_id, act, time):
         log = Logging.objects.filter(object_repr=obj_name, \
@@ -117,7 +115,7 @@ class SignalsTest(TestCase):
 
     def testSignalsHttpReq(self):
         time = datetime.datetime.now()
-        md = HttpReq(path="/", time="2010-06-16 14:00:05")
+        md = HttpReq(path="/")
         md.save()
         self._loggingObjIsPresent('httpreq', md.id, 'created', time)
 
