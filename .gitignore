@@ -1,0 +1,7 @@
+
+/db.db
+*.pyc
+*.tmp_*
+*.bat
+/11.json
+*.db-journal
